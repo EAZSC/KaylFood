@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mijoz Profili — KaylFood</title>
+    <meta name="description" content="KaylFood mijoz shaxsiy kabineti, saqlangan manzillar va buyurtmalar tarixi." />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+  </head>
+  <body data-page="profile">
+    <header id="site-header"></header>
+
+    <main class="section-block">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Mijoz shaxsiy kabineti</h1>
+            <p class="section-subtitle">Shaxsiy ma’lumotlar, yetkazib berish manzillari va buyurtmalar tarixi</p>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <a href="../login.html" class="btn btn-glass-white btn-sm">Rolni almashtirish</a>
+            <button type="button" id="profile-logout-btn" class="btn btn-glass-danger btn-sm">Tizimdan chiqish</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:start;">
+          <!-- Left Column: Profile & Saved Addresses -->
+          <div style="display:flex;flex-direction:column;gap:24px;">
+            <form id="profile-edit-form" class="table-panel" style="padding:24px;margin-bottom:0;">
+              <h3 style="font-size:1.1rem;margin-bottom:14px;">Shaxsiy ma’lumotlar</h3>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-first-name">Ism</label>
+                <input type="text" id="prof-first-name" class="form-input" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-last-name">Familiya</label>
+                <input type="text" id="prof-last-name" class="form-input" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-phone">Telefon raqam</label>
+                <input type="tel" id="prof-phone" class="form-input" required />
+              </div>
+
+              <button type="submit" class="btn btn-glass-primary btn-block">O‘zgarishlarni saqlash</button>
+            </form>
+
+            <div class="table-panel" style="padding:24px;margin-bottom:0;">
+              <h3 style="font-size:1.1rem;margin-bottom:14px;">Saqlangan yetkazib berish manzillari</h3>
+              <div id="saved-addresses-list" style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;"></div>
+
+              <form id="profile-address-form" style="padding-top:14px;border-top:1px solid var(--border-hairline);">
+                <h4 style="font-size:0.95rem;margin-bottom:10px;">Yangi manzil qo‘shish</h4>
+                <div class="form-group">
+                  <label class="form-label" for="new-addr-label">Manzil nomi</label>
+                  <input type="text" id="new-addr-label" class="form-input" placeholder="Uy, Ofis, Ota-onam uyi..." required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="new-addr-text">To‘liq manzil</label>
+                  <input type="text" id="new-addr-text" class="form-input" placeholder="Tuman, ko‘cha, uy va xonadon" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="new-addr-note">Qo‘shimcha izoh</label>
+                  <input type="text" id="new-addr-note" class="form-input" placeholder="Domofon kodi yoki mo‘ljal" />
+                </div>
+                <button type="submit" class="btn btn-glass-success btn-sm">Manzilni qo‘shish</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Right Column: Order History -->
+          <div class="table-panel" style="padding:24px;margin-bottom:0;">
+            <h3 style="font-size:1.15rem;margin-bottom:14px;">Buyurtmalar tarixi</h3>
+            <div id="customer-order-history" style="display:flex;flex-direction:column;gap:14px;"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script type="module" src="../js/app.js"></script>
+  </body>
+</html>

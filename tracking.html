@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buyurtma kuzatuvi — KaylFood</title>
+    <meta name="description" content="KaylFood buyurtmangiz holatini va biriktirilgan kuryerni jonli kuzating." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="tracking">
+    <header id="site-header"></header>
+
+    <main class="section-block">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Buyurtmani jonli kuzatish</h1>
+            <p class="section-subtitle">
+              Buyurtma qabul qilingandan tortib kuryer yetkazib bergunga qadar barcha 9 bosqich holati
+            </p>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <label for="tracking-order-select" style="font-size:0.85rem;font-weight:600;color:var(--text-secondary);">Buyurtma:</label>
+            <select id="tracking-order-select" class="form-select" style="width:auto;min-width:240px;padding:8px 12px;"></select>
+            <button type="button" id="tracking-simulate-next-btn" class="btn btn-glass-success btn-sm">
+              Keyingi bosqichga o‘tkazish
+            </button>
+            <button type="button" id="tracking-cancel-order-btn" class="btn btn-glass-danger btn-sm">
+              Bekor qilish
+            </button>
+          </div>
+        </div>
+
+        <div id="tracking-details-mount" style="margin-bottom:24px;"></div>
+
+        <div class="table-panel" style="padding:24px;">
+          <h3 style="font-size:1.15rem;margin-bottom:6px;">Buyurtma jarayoni xronologiyasi</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:14px;">
+            Restoran va kuryer Telegram boti orqali yangilagan holatlar real vaqtda aks etadi.
+          </p>
+          <div id="tracking-timeline-mount" class="tracking-timeline"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

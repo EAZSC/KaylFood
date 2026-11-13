@@ -1,0 +1,8 @@
+{
+  "name": "KaylFood",
+  "description": "Premium food delivery marketplace with customer ordering, live order tracking, restaurant owner dashboard, courier dashboard, super admin console, and dual-channel Telegram bot integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

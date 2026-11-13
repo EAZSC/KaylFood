@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Admin Boshqaruvi — KaylFood</title>
+    <meta name="description" content="KaylFood Super Admin boshqaruv markazi: restoranlar, buyurtmalar, moliya, kuryerlar va Telegram integratsiya." />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+  </head>
+  <body data-page="admin">
+    <header id="site-header"></header>
+
+    <div class="dashboard-shell">
+      <aside class="dashboard-sidebar" aria-label="Super Admin menyusi">
+        <span class="sidebar-section-label">Super Admin konsoli</span>
+        <a href="#admin-restaurants-sec" class="sidebar-tab-btn active">Restoranlar boshqaruvi</a>
+        <a href="#admin-orders-sec" class="sidebar-tab-btn">Barcha buyurtmalar</a>
+        <a href="#admin-finance-sec" class="sidebar-tab-btn">Moliyaviy tranzaksiyalar</a>
+        <a href="#admin-users-sec" class="sidebar-tab-btn">Mijozlar va Kuryerlar</a>
+        <a href="#admin-settings-sec" class="sidebar-tab-btn">Kategoriyalar va Tizim</a>
+      </aside>
+
+      <main class="dashboard-main">
+        <div class="dashboard-topbar">
+          <div>
+            <span class="hero-kicker">Platforma bosh boshqaruvi</span>
+            <h1 class="section-title">Super Admin Boshqaruv Markazi</h1>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <input
+              type="search"
+              id="admin-global-search"
+              class="form-input"
+              style="width:260px;"
+              placeholder="Restoran, buyurtma yoki mijoz qidirish..."
+              aria-label="Global qidiruv"
+            />
+            <button type="button" id="admin-test-channel-a-btn" class="btn btn-glass-white btn-sm">
+              Kanal A test
+            </button>
+            <button type="button" id="admin-test-channel-b-btn" class="btn btn-glass-primary btn-sm">
+              Kanal B (Moliya) test
+            </button>
+          </div>
+        </div>
+
+        <!-- Platform KPIs -->
+        <div id="admin-kpis-mount" class="kpi-grid"></div>
+
+        <!-- Telegram Output Preview -->
+        <pre
+          id="admin-telegram-test-output"
+          style="display:none;white-space:pre-wrap;font-family:var(--font-mono);font-size:0.8rem;padding:16px;background:#fff;border:1px solid var(--border-hairline);border-radius:12px;margin-bottom:24px;"
+        ></pre>
+
+        <!-- Restaurants Management -->
+        <section id="admin-restaurants-sec" class="table-panel">
+          <div class="table-panel-header">
+            <div>
+              <h2 style="font-size:1.1rem;">Restoranlar reestri</h2>
+              <p style="font-size:0.82rem;color:var(--text-muted);">Restoran qo‘shish, ish holatini boshqarish yoki faoliyatini vaqtincha to‘xtatish</p>
+            </div>
+          </div>
+
+          <div style="padding:18px 22px;border-bottom:1px solid var(--border-hairline);background:rgba(248,250,252,0.7);">
+            <form id="admin-add-restaurant-form" style="display:grid;grid-template-columns:1.2fr 1.4fr 0.9fr 0.8fr 0.8fr auto;gap:10px;align-items:end;">
+              <div>
+                <label class="form-label" for="adm-rest-name">Restoran nomi</label>
+                <input type="text" id="adm-rest-name" class="form-input" placeholder="Samarkand Darvoza Grill" required />
+              </div>
+              <div>
+                <label class="form-label" for="adm-rest-address">Manzil</label>
+                <input type="text" id="adm-rest-address" class="form-input" placeholder="Toshkent sh., Shayxontohur..." required />
+              </div>
+              <div>
+                <label class="form-label" for="adm-rest-category">Asosiy kategoriya</label>
+                <select id="adm-rest-category" class="form-select">
+                  <option value="Burgers">Burgers</option>
+                  <option value="Pizza">Pizza</option>
+                  <option value="Lavash">Lavash</option>
+                  <option value="Shawarma">Shawarma</option>
+                  <option value="Sushi">Sushi</option>
+                  <option value="Other food">Other food</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label" for="adm-rest-fee">Yetkazish (so‘m)</label>
+                <input type="number" id="adm-rest-fee" class="form-input tabular-nums" value="15000" required />
+              </div>
+              <div>
+                <label class="form-label" for="adm-rest-min">Min. buyurtma</label>
+                <input type="number" id="adm-rest-min" class="form-input tabular-nums" value="50000" required />
+              </div>
+              <button type="submit" class="btn btn-glass-primary">Qo‘shish</button>
+            </form>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Restoran va Manzil</th>
+                  <th>Reyting</th>
+                  <th class="num-col">Yetkazish</th>
+                  <th class="num-col">Min. buyurtma</th>
+                  <th>Holat</th>
+                  <th>Boshqaruv</th>
+                </tr>
+              </thead>
+              <tbody id="admin-restaurants-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- All Orders -->
+        <section id="admin-orders-sec" class="table-panel">
+          <div class="table-panel-header">
+            <h2 style="font-size:1.1rem;">Platformadagi barcha buyurtmalar</h2>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Buyurtma #</th>
+                  <th>Restoran</th>
+                  <th>Mijoz</th>
+                  <th>Biriktirilgan kuryer</th>
+                  <th class="num-col">Summa</th>
+                  <th>Holat</th>
+                </tr>
+              </thead>
+              <tbody id="admin-orders-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Financial Transactions Ledger (Channel B mirror) -->
+        <section id="admin-finance-sec" class="table-panel">
+          <div class="table-panel-header">
+            <div>
+              <h2 style="font-size:1.1rem;">Moliyaviy tranzaksiyalar va hisobotlar (Telegram Kanal B)</h2>
+              <p style="font-size:0.82rem;color:var(--text-muted);">
+                Haqiqiy buyurtmalardan hisoblangan Naqd (Cash), Bank kartasi (Card) va Onlayn to‘lov ko‘rsatkichlari
+              </p>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Buyurtma</th>
+                  <th>Restoran</th>
+                  <th>Vaqt</th>
+                  <th class="num-col">Taomlar (Subtotal)</th>
+                  <th class="num-col">Yetkazish</th>
+                  <th class="num-col">Naqd (Cash)</th>
+                  <th class="num-col">Karta (Card)</th>
+                  <th class="num-col">Onlayn</th>
+                  <th class="num-col">Jami</th>
+                </tr>
+              </thead>
+              <tbody id="admin-transactions-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Customers & Couriers Split -->
+        <div id="admin-users-sec" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;">
+          <section class="table-panel" style="margin-bottom:0;">
+            <div class="table-panel-header">
+              <h2 style="font-size:1.05rem;">Ro‘yxatdan o‘tgan foydalanuvchilar</h2>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>F.I.Sh.</th>
+                    <th>Telefon</th>
+                    <th>Rol</th>
+                    <th class="num-col">Manzillar</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-customers-tbody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="table-panel" style="margin-bottom:0;">
+            <div class="table-panel-header">
+              <h2 style="font-size:1.05rem;">Kuryerlar tarkibi</h2>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Kuryer F.I.Sh.</th>
+                    <th>Telefon</th>
+                    <th>Transport</th>
+                    <th class="num-col">Soni</th>
+                    <th class="num-col">Daromad</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-couriers-tbody"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- Categories & Platform Settings -->
+        <div id="admin-settings-sec" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <section class="table-panel" style="padding:22px;margin-bottom:0;">
+            <h2 style="font-size:1.05rem;margin-bottom:12px;">Taom kategoriyalarini boshqarish</h2>
+            <div id="admin-categories-list" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;"></div>
+
+            <form id="admin-add-category-form" style="display:flex;gap:10px;">
+              <input type="text" id="adm-new-cat-name" class="form-input" placeholder="Yangi kategoriya nomi..." required />
+              <button type="submit" class="btn btn-glass-primary">Qo‘shish</button>
+            </form>
+          </section>
+
+          <section class="table-panel" style="padding:22px;margin-bottom:0;">
+            <h2 style="font-size:1.05rem;margin-bottom:12px;">Platforma global sozlamalari</h2>
+            <form id="admin-settings-form">
+              <div class="form-group">
+                <label class="form-label" for="adm-set-name">Platforma nomi</label>
+                <input type="text" id="adm-set-name" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="adm-set-phone">Qo‘llab-quvvatlash telefoni</label>
+                <input type="text" id="adm-set-phone" class="form-input tabular-nums" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="adm-set-comm">Platforma komissiyasi (%)</label>
+                <input type="number" id="adm-set-comm" class="form-input tabular-nums" required />
+              </div>
+              <button type="submit" class="btn btn-glass-primary btn-block">Saqlash</button>
+            </form>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <footer id="site-footer"></footer>
+
+    <script type="module" src="../js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KaylFood — Premium Food Delivery Marketplace</title>
+    <meta
+      name="description"
+      content="KaylFood — Toshkentning yetakchi restoranlaridan issiq taomlarni tezkor yetkazib berish, jonli kuzatuv va Telegram bot integratsiyali zamonaviy marketpleys."
+    />
+    <meta property="og:title" content="KaylFood — Premium Food Delivery Marketplace" />
+    <meta
+      property="og:description"
+      content="KaylFood — Toshkentning yetakchi restoranlaridan issiq taomlarni tezkor yetkazib berish, jonli kuzatuv va Telegram bot integratsiyali zamonaviy marketpleys."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="home">
+    <header id="site-header"></header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container">
+          <div class="hero-grid animate-enter">
+            <div class="hero-content">
+              <span class="hero-kicker">Toshkent bo‘ylab tezkor yetkazib berish</span>
+              <h1 class="hero-headline">
+                Sevimli restoranlaringizdan sarxil taomlar — bir necha daqiqada eshigingizda.
+              </h1>
+              <p class="hero-description">
+                Milliy palovdan tortib o‘tinli pechda pishgan Neapolitan pitsalari va mualliflik burgerlargacha. Har bir buyurtma jonli kuzatuvda.
+              </p>
+
+              <form id="home-search-form" class="hero-search-bar" role="search">
+                <input
+                  type="search"
+                  id="home-search-input"
+                  class="hero-search-input"
+                  placeholder="Restoran, burger, palov, lavash yoki pitsa qidiring..."
+                  aria-label="Restoran va taomlarni qidirish"
+                />
+                <button type="submit" class="btn btn-glass-primary">Qidirish</button>
+              </form>
+
+              <div class="hero-metrics-strip">
+                <div class="hero-metric-item">O‘rtacha yetkazish: <strong>25 daq</strong></div>
+                <div class="hero-metric-item">Hamkor restoranlar: <strong>6+</strong></div>
+                <div class="hero-metric-item">Mijozlar bahosi: <strong>4.9 / 5.0</strong></div>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <a href="customer/profile.html" class="btn btn-glass-white btn-sm">Mijoz kabineti</a>
+                <a href="login.html" class="btn btn-glass-white btn-sm">Kirish va rollar</a>
+              </div>
+            </div>
+
+            <div class="hero-image">
+              <!-- ADD HERO IMAGE HERE -->
+              <img
+                src="/src/assets/images/hero_halal_fastfood_feast_1794573515889.jpg"
+                alt="KaylFood Fast Food — Burger, Pizza, Lavash va Kartoshka fri"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Food Categories Filter -->
+      <section class="section-block" style="padding-top:16px;padding-bottom:16px;">
+        <div class="container">
+          <div class="section-header" style="margin-bottom:14px;">
+            <div>
+              <h2 class="section-title">Taom kategoriyalari</h2>
+              <p class="section-subtitle">Burgers, Pizza, Lavash, Shawarma, Hot dogs, Chicken, Sushi, Drinks, Desserts va boshqa taomlar</p>
+            </div>
+          </div>
+          <div id="home-category-bar" class="category-bar" role="tablist" aria-label="Taom kategoriyalari"></div>
+        </div>
+      </section>
+
+      <!-- Featured / Recommended / Recently Viewed / Special Offers Restaurants Catalog -->
+      <section id="restaurants-section" class="section-block">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Restoranlar katalogi</h2>
+              <p class="section-subtitle">Tanlangan, tavsiya etilgan, maxsus aksiyali va yaqinda ko‘rilgan restoranlar</p>
+            </div>
+
+            <div id="home-collection-tabs" class="category-bar" aria-label="Restoran guruhlari">
+              <button type="button" class="category-btn active" data-collection-tab="all">Barchasi</button>
+              <button type="button" class="category-btn" data-collection-tab="featured">Mashhur</button>
+              <button type="button" class="category-btn" data-collection-tab="recommended">Tavsiya etilgan</button>
+              <button type="button" class="category-btn" data-collection-tab="offers">Maxsus aksiyalar</button>
+              <button type="button" class="category-btn" data-collection-tab="recent">Yaqinda ko‘rilgan</button>
+            </div>
+          </div>
+
+          <div id="home-restaurants-grid" class="restaurant-grid"></div>
+        </div>
+      </section>
+
+      <!-- Popular Dishes Section -->
+      <section id="popular-dishes-section" class="section-block">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Ommabop taomlar va maxsus takliflar</h2>
+              <p class="section-subtitle">Mijozlar eng ko‘p buyurtma qilayotgan sarxil taomlar — to‘g‘ridan-to‘g‘ri savatchaga qo‘shing</p>
+            </div>
+            <a href="checkout.html" class="btn btn-glass-white btn-sm">Savatchaga o‘tish</a>
+          </div>
+
+          <div id="home-popular-products-grid" class="product-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

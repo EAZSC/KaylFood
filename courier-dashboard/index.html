@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kuryer Boshqaruv Paneli — KaylFood</title>
+    <meta name="description" content="KaylFood kuryer kabineti: yangi yetkazib berish so‘rovlari, buyurtma holatini yangilash va daromadlar." />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+  </head>
+  <body data-page="courier-dashboard">
+    <header id="site-header"></header>
+
+    <div class="dashboard-shell">
+      <aside class="dashboard-sidebar" aria-label="Kuryer menyusi">
+        <span class="sidebar-section-label">Kuryer kabineti</span>
+        <a href="#active-deliveries-section" class="sidebar-tab-btn active">Faol topshiriqlar</a>
+        <a href="#courier-profile-section" class="sidebar-tab-btn">Shaxsiy ma’lumotlar</a>
+        <a href="#courier-history-section" class="sidebar-tab-btn">Yetkazishlar tarixi</a>
+      </aside>
+
+      <main class="dashboard-main">
+        <div class="dashboard-topbar">
+          <div>
+            <span class="hero-kicker">Kuryerlik xizmati va Telegram integratsiya</span>
+            <h1 class="section-title">Kuryer boshqaruv paneli</h1>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;">
+            <label for="courier-dash-selector" style="font-size:0.85rem;font-weight:600;color:var(--text-secondary);">Faol kuryer:</label>
+            <select id="courier-dash-selector" class="form-select" style="width:auto;min-width:260px;"></select>
+          </div>
+        </div>
+
+        <!-- Courier KPIs -->
+        <div id="courier-dash-kpis" class="kpi-grid"></div>
+
+        <!-- Active Deliveries & Requests -->
+        <section id="active-deliveries-section" style="margin-bottom:28px;">
+          <div class="section-header" style="margin-bottom:14px;">
+            <div>
+              <h2 style="font-size:1.2rem;">Biriktirilgan buyurtmalar va yangi so‘rovlar</h2>
+              <p style="font-size:0.84rem;color:var(--text-muted);">
+                Buyurtmani qabul qilishingiz yoki holatini yangilashingiz bilan mijoz va restoran oynasida darhol aks etadi.
+              </p>
+            </div>
+          </div>
+
+          <div id="courier-active-deliveries" style="display:flex;flex-direction:column;gap:16px;"></div>
+        </section>
+
+        <!-- Courier Identity & Delivery History Split -->
+        <div style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:24px;align-items:start;">
+          <!-- Courier Identity Form (First name, Last name, Father's name, Phone) -->
+          <section id="courier-profile-section" class="table-panel" style="padding:22px;margin-bottom:0;">
+            <h2 style="font-size:1.1rem;margin-bottom:12px;">Kuryer shaxsiy guvohnomasi</h2>
+            <form id="courier-profile-form">
+              <div class="form-group">
+                <label class="form-label" for="cour-first-name">Ism (First name) *</label>
+                <input type="text" id="cour-first-name" class="form-input" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cour-last-name">Familiya (Last name) *</label>
+                <input type="text" id="cour-last-name" class="form-input" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cour-father-name">Otasining ismi (Father's name) *</label>
+                <input type="text" id="cour-father-name" class="form-input" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cour-phone">Telefon raqam (Phone number) *</label>
+                <input type="tel" id="cour-phone" class="form-input tabular-nums" required />
+              </div>
+
+              <button type="submit" class="btn btn-glass-primary btn-block">Ma’lumotlarni saqlash</button>
+            </form>
+          </section>
+
+          <!-- Delivery History Table -->
+          <section id="courier-history-section" class="table-panel" style="margin-bottom:0;">
+            <div class="table-panel-header">
+              <h2 style="font-size:1.1rem;">Bajarilgan yetkazishlar tarixi</h2>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Buyurtma</th>
+                    <th>Restoran</th>
+                    <th>Mijoz va Manzil</th>
+                    <th class="num-col">Tarif</th>
+                    <th>Holat</th>
+                  </tr>
+                </thead>
+                <tbody id="courier-history-tbody"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <footer id="site-footer"></footer>
+
+    <script type="module" src="../js/app.js"></script>
+  </body>
+</html>

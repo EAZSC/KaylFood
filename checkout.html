@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buyurtmani rasmiylashtirish — KaylFood</title>
+    <meta name="description" content="KaylFood yetkazib berish manzili va to‘lov usulini tanlash." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="checkout">
+    <header id="site-header"></header>
+
+    <main class="section-block">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Buyurtmani rasmiylashtirish va to‘lov</h1>
+            <p class="section-subtitle">
+              Ma’lumotlaringizni tekshiring. Buyurtma tasdiqlangach, avtomatik ravishda Telegram kanallariga yuboriladi.
+            </p>
+          </div>
+          <a href="index.html#restaurants-section" class="btn btn-glass-white btn-sm">← Xaridni davom ettirish</a>
+        </div>
+
+        <div id="checkout-main-grid" style="display:grid;grid-template-columns:1.25fr 0.75fr;gap:28px;align-items:start;">
+          <!-- Left: Checkout Form -->
+          <form id="checkout-form" class="table-panel" style="padding:24px;margin-bottom:0;" novalidate>
+            <h3 style="font-size:1.15rem;margin-bottom:16px;">1. Mijoz va yetkazib berish ma’lumotlari</h3>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div class="form-group">
+                <label class="form-label" for="checkout-name">To‘liq ism-sharifingiz *</label>
+                <input
+                  type="text"
+                  id="checkout-name"
+                  class="form-input"
+                  placeholder="Azizbek Rahimov"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="checkout-phone">Telefon raqam *</label>
+                <input
+                  type="tel"
+                  id="checkout-phone"
+                  class="form-input"
+                  placeholder="+998 90 998 11 22"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="checkout-saved-address">Saqlangan manzillardan tanlash</label>
+              <select id="checkout-saved-address" class="form-select">
+                <option value="">Yangi manzil kiritish...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="checkout-address">Yetkazib berish manzili *</label>
+              <input
+                type="text"
+                id="checkout-address"
+                class="form-input"
+                placeholder="Tuman, ko‘cha, uy va xonadon raqami"
+                required
+              />
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;" class="form-group">
+              <div>
+                <label class="form-label" for="checkout-coords">Xarita / Lokatsiya koordinatalari (ixtiyoriy)</label>
+                <input
+                  type="text"
+                  id="checkout-coords"
+                  class="form-input"
+                  placeholder="41.3111, 69.2797"
+                />
+              </div>
+              <button type="button" class="btn btn-glass-white" id="checkout-detect-location-btn">
+                Joylashuvni aniqlash
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="checkout-instructions">Kuryer uchun qo‘shimcha izoh</label>
+              <textarea
+                id="checkout-instructions"
+                class="form-textarea"
+                rows="2"
+                placeholder="Domofon kodi, mo‘ljal yoki qo‘ng‘iroq vaqti..."
+              ></textarea>
+            </div>
+
+            <h3 style="font-size:1.15rem;margin:20px 0 12px;">2. To‘lov usulini tanlang</h3>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px;">
+              <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--border-hairline);border-radius:12px;background:#fff;cursor:pointer;">
+                <input type="radio" name="paymentMethod" value="cash" checked />
+                <span style="font-weight:600;font-size:0.9rem;">Naqd pul (Cash)</span>
+              </label>
+
+              <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--border-hairline);border-radius:12px;background:#fff;cursor:pointer;">
+                <input type="radio" name="paymentMethod" value="card" />
+                <span style="font-weight:600;font-size:0.9rem;">Bank kartasi (Card)</span>
+              </label>
+
+              <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--border-hairline);border-radius:12px;background:#fff;cursor:pointer;">
+                <input type="radio" name="paymentMethod" value="online" />
+                <span style="font-weight:600;font-size:0.9rem;">Onlayn to‘lov</span>
+              </label>
+            </div>
+
+            <div
+              id="payment-gateway-notice"
+              style="padding:12px 14px;background:var(--surface-muted);border-radius:10px;font-size:0.84rem;color:var(--text-secondary);margin-bottom:16px;"
+            >
+              <strong>Naqd pul orqali to‘lov:</strong> Buyurtmani kuryer yetkazib berganida naqd pulda to‘laysiz.
+            </div>
+
+            <div id="checkout-error" class="form-error" role="alert"></div>
+
+            <button type="submit" id="checkout-submit-btn" class="btn btn-glass-primary btn-block btn-lg">
+              Buyurtmani tasdiqlash
+            </button>
+          </form>
+
+          <!-- Right: Order Summary -->
+          <aside class="table-panel" style="padding:24px;margin-bottom:0;">
+            <h3 style="font-size:1.15rem;margin-bottom:14px;">Buyurtma tarkibi</h3>
+            <div id="checkout-order-summary"></div>
+          </aside>
+        </div>
+
+        <!-- Order Confirmation View (populated after placing order) -->
+        <div id="checkout-confirmation-section" style="display:none;margin-top:16px;"></div>
+      </div>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

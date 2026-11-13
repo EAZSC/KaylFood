@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restoran Menyusi — KaylFood</title>
+    <meta name="description" content="KaylFood hamkor restorani menyusi, taomlar tarkibi va tezkor buyurtma." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="restaurant">
+    <header id="site-header"></header>
+
+    <main class="section-block" style="padding-top:24px;">
+      <div class="container">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+          <a href="index.html#restaurants-section" class="btn btn-glass-white btn-sm">← Restoranlar katalogiga qaytish</a>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <label for="restaurant-quick-switcher" style="font-size:0.85rem;color:var(--text-secondary);font-weight:600;">Restoranni almashtirish:</label>
+            <select id="restaurant-quick-switcher" class="form-select" style="width:auto;padding:7px 12px;"></select>
+          </div>
+        </div>
+
+        <!-- Restaurant Detail Hero -->
+        <div id="restaurant-detail-header" style="margin-bottom:28px;"></div>
+
+        <!-- Menu Filter & Search Toolbar -->
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap;">
+          <div id="restaurant-menu-categories" class="category-bar" role="tablist"></div>
+
+          <div style="min-width:260px;flex:1;max-width:360px;">
+            <input
+              type="search"
+              id="restaurant-menu-search"
+              class="form-input"
+              placeholder="Menyu ichidan taom qidirish..."
+              aria-label="Restoran menyusidan qidirish"
+            />
+          </div>
+        </div>
+
+        <!-- Food Products Grid -->
+        <div id="restaurant-menu-grid" class="product-grid"></div>
+      </div>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

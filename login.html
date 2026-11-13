@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tizimga kirish — KaylFood</title>
+    <meta name="description" content="KaylFood shaxsiy kabinetiga kirish va rollarni boshqarish." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="login">
+    <header id="site-header"></header>
+
+    <main class="section-block">
+      <div class="container" style="max-width:540px;">
+        <div class="modal-card animate-enter" style="max-height:none;">
+          <span class="hero-kicker">SHAXSIY KABINET</span>
+          <h1 style="font-size:1.65rem;margin-top:4px;margin-bottom:8px;">KaylFood tizimiga kirish</h1>
+          <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:20px;">
+            Telefon raqamingiz va parolingiz orqali kiring yoki tezkor demo profilni tanlang.
+          </p>
+
+          <form id="login-form" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="login-phone">Telefon raqam</label>
+              <input
+                type="tel"
+                id="login-phone"
+                class="form-input"
+                placeholder="+998 90 998 11 22"
+                value="+998 90 998 11 22"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="login-password">Parol</label>
+              <div class="password-field-wrap">
+                <input
+                  type="password"
+                  id="login-password"
+                  class="form-input"
+                  placeholder="Parolingizni kiriting"
+                  value="Kayl2026!"
+                  required
+                />
+                <button type="button" class="password-toggle-btn" data-toggle-password="login-password">
+                  Ko‘rsatish
+                </button>
+              </div>
+            </div>
+
+            <div id="login-error" class="form-error" role="alert"></div>
+
+            <button type="submit" class="btn btn-glass-primary btn-block btn-lg" style="margin-top:8px;">
+              Tizimga kirish
+            </button>
+          </form>
+
+          <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border-hairline);text-align:center;">
+            <span style="font-size:0.875rem;color:var(--text-secondary);">Hisobingiz yo‘qmi?</span>
+            <a href="register.html" style="color:var(--primary-blue);font-weight:700;margin-left:6px;">Ro‘yxatdan o‘tish</a>
+          </div>
+
+          <div style="margin-top:20px;padding:16px;background:var(--surface-muted);border-radius:12px;">
+            <span style="font-size:0.78rem;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:10px;">
+              DEMO REJIM: ROLLAR BO‘YICHA TEZKOR O‘TISH
+            </span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <button type="button" class="btn btn-glass-white btn-sm" data-demo-login="customer">Mijoz (Azizbek)</button>
+              <button type="button" class="btn btn-glass-white btn-sm" data-demo-login="restaurant">Restoran egasi</button>
+              <button type="button" class="btn btn-glass-white btn-sm" data-demo-login="courier">Kuryer (Sardor)</button>
+              <button type="button" class="btn btn-glass-white btn-sm" data-demo-login="super_admin">Super Admin</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restoran Boshqaruv Paneli — KaylFood</title>
+    <meta name="description" content="KaylFood restoran egasi boshqaruv paneli: buyurtmalar, menyu, kuryer biriktirish va moliya." />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+  </head>
+  <body data-page="restaurant-dashboard">
+    <header id="site-header"></header>
+
+    <div class="dashboard-shell">
+      <aside class="dashboard-sidebar" aria-label="Restoran boshqaruv menyusi">
+        <span class="sidebar-section-label">Restoran boshqaruvi</span>
+        <a href="#orders-panel" class="sidebar-tab-btn active">Buyurtmalar va Kuryer</a>
+        <a href="#menu-panel" class="sidebar-tab-btn">Menyu boshqaruvi</a>
+        <a href="#analytics-panel" class="sidebar-tab-btn">Kunlik / Oylik savdo</a>
+        <a href="#couriers-panel" class="sidebar-tab-btn">Restoran kuryerlari</a>
+        <a href="#settings-panel" class="sidebar-tab-btn">Restoran sozlamalari</a>
+      </aside>
+
+      <main class="dashboard-main">
+        <div class="dashboard-topbar">
+          <div>
+            <span class="hero-kicker">Restoran hamkor kabineti</span>
+            <h1 class="section-title">Restoran boshqaruv paneli</h1>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;">
+            <label for="rest-dash-selector" style="font-size:0.85rem;font-weight:600;color:var(--text-secondary);">Faol restoran:</label>
+            <select id="rest-dash-selector" class="form-select" style="width:auto;min-width:250px;"></select>
+          </div>
+        </div>
+
+        <!-- KPI Summary Strip -->
+        <div id="rest-dash-kpis" class="kpi-grid"></div>
+
+        <!-- Courier Bot Dispatch Payload Preview -->
+        <div id="rest-courier-bot-preview" class="table-panel" style="display:none;padding:18px;margin-bottom:24px;"></div>
+
+        <!-- Orders & Courier Assignment Table -->
+        <section id="orders-panel" class="table-panel">
+          <div class="table-panel-header">
+            <div>
+              <h2 style="font-size:1.1rem;">Buyurtmalar va Kuryer biriktirish</h2>
+              <p style="font-size:0.82rem;color:var(--text-muted);">
+                Kuryerni tanlab "Yuborish" tugmasini bossangiz, Telegram Kuryer Botiga inline-tugmali so‘rov yuboriladi.
+              </p>
+            </div>
+
+            <div id="rest-order-filter-bar" class="category-bar">
+              <button type="button" class="category-btn active" data-rest-order-filter="all">Barchasi</button>
+              <button type="button" class="category-btn" data-rest-order-filter="incoming">Yangi</button>
+              <button type="button" class="category-btn" data-rest-order-filter="active">Faol</button>
+              <button type="button" class="category-btn" data-rest-order-filter="completed">Yakunlangan</button>
+              <button type="button" class="category-btn" data-rest-order-filter="cancelled">Bekor qilingan</button>
+            </div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Buyurtma</th>
+                  <th>Mijoz va Manzil</th>
+                  <th>Taomlar</th>
+                  <th class="num-col">Summa</th>
+                  <th>Holatni o‘zgartirish</th>
+                  <th>Kuryer biriktirish (Telegram Bot)</th>
+                </tr>
+              </thead>
+              <tbody id="rest-orders-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Menu Management Panel -->
+        <section id="menu-panel" class="table-panel">
+          <div class="table-panel-header">
+            <div>
+              <h2 style="font-size:1.1rem;">Menyu va taomlarni boshqarish</h2>
+              <p style="font-size:0.82rem;color:var(--text-muted);">Taom qo‘shish, narxlarni tahrirlash va mavjudligini boshqarish</p>
+            </div>
+          </div>
+
+          <div style="padding:20px;border-bottom:1px solid var(--border-hairline);background:rgba(248,250,252,0.6);">
+            <form id="rest-add-product-form" style="display:grid;grid-template-columns:1.3fr 1fr 0.8fr 1.5fr auto;gap:10px;align-items:end;">
+              <div>
+                <label class="form-label" for="new-prod-name">Yangi taom nomi</label>
+                <input type="text" id="new-prod-name" class="form-input" placeholder="Masalan: Xon Palov" required />
+              </div>
+              <div>
+                <label class="form-label" for="new-prod-category">Kategoriya</label>
+                <select id="new-prod-category" class="form-select">
+                  <option value="Burgers">Burgers</option>
+                  <option value="Pizza">Pizza</option>
+                  <option value="Lavash">Lavash</option>
+                  <option value="Shawarma">Shawarma</option>
+                  <option value="Hot dogs">Hot dogs</option>
+                  <option value="Chicken">Chicken</option>
+                  <option value="Sushi">Sushi</option>
+                  <option value="Drinks">Drinks</option>
+                  <option value="Desserts">Desserts</option>
+                  <option value="Other food" selected>Other food</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label" for="new-prod-price">Narx (so‘m)</label>
+                <input type="number" id="new-prod-price" class="form-input" value="48000" required />
+              </div>
+              <div>
+                <label class="form-label" for="new-prod-desc">Tavsif</label>
+                <input type="text" id="new-prod-desc" class="form-input" placeholder="Taom tarkibi..." />
+              </div>
+              <button type="submit" class="btn btn-glass-primary">Taom qo‘shish</button>
+            </form>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Taom nomi va tavsifi</th>
+                  <th>Kategoriya</th>
+                  <th class="num-col">Narx (so‘m)</th>
+                  <th>Mavjudligi</th>
+                  <th>Amal</th>
+                </tr>
+              </thead>
+              <tbody id="rest-menu-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Sales Chart & Settings Split -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" id="analytics-panel">
+          <!-- Sales Analytics -->
+          <section class="table-panel" style="padding:22px;margin-bottom:0;">
+            <h2 style="font-size:1.1rem;margin-bottom:4px;">Haftalik va oylik savdo dinamikasi</h2>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;">Kunlar kesimida bajarilgan buyurtmalar hajmi</p>
+            <div class="chart-bars">
+              <div class="chart-bar-col"><div class="chart-bar-fill" style="height:58%;"></div><span class="chart-bar-label">Du</span></div>
+              <div class="chart-bar-col"><div class="chart-bar-fill" style="height:66%;"></div><span class="chart-bar-label">Se</span></div>
+              <div class="chart-bar-col"><div class="chart-bar-fill" style="height:74%;"></div><span class="chart-bar-label">Ch</span></div>
+              <div class="chart-bar-col"><div class="chart-bar-fill" style="height:82%;"></div><span class="chart-bar-label">Pa</span></div>
+              <div class="chart-bar-col"><div class="chart-bar-fill" style="height:95%;"></div><span class="chart-bar-label">Ju</span></div>
+              <div class="chart-bar-col"><div class="chart-bar-fill" style="height:100%;"></div><span class="chart-bar-label">Sh</span></div>
+              <div class="chart-bar-col"><div class="chart-bar-fill" style="height:88%;"></div><span class="chart-bar-label">Ya</span></div>
+            </div>
+
+            <div id="couriers-panel" style="margin-top:22px;">
+              <h3 style="font-size:1rem;margin-bottom:10px;">Restoranning shaxsiy kuryerlar ro‘yxati</h3>
+              <div id="rest-couriers-roster" style="display:flex;flex-direction:column;gap:8px;"></div>
+            </div>
+          </section>
+
+          <!-- Restaurant Settings -->
+          <section id="settings-panel" class="table-panel" style="padding:22px;margin-bottom:0;">
+            <h2 style="font-size:1.1rem;margin-bottom:14px;">Restoran sozlamalari va tariflari</h2>
+            <form id="rest-settings-form">
+              <div class="form-group">
+                <label class="form-label" for="rest-set-open">Restoran joriy holati</label>
+                <select id="rest-set-open" class="form-select">
+                  <option value="true">Ochiq — Buyurtmalar qabul qilinadi</option>
+                  <option value="false">Yopiq — Vaqtincha buyurtma olinmaydi</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="rest-set-hours">Ish vaqti</label>
+                <input type="text" id="rest-set-hours" class="form-input" placeholder="09:00 – 23:30" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="rest-set-fee">Yetkazib berish narxi (so‘m)</label>
+                <input type="number" id="rest-set-fee" class="form-input tabular-nums" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="rest-set-min">Minimal buyurtma summasi (so‘m)</label>
+                <input type="number" id="rest-set-min" class="form-input tabular-nums" required />
+              </div>
+
+              <button type="submit" class="btn btn-glass-primary btn-block">Sozlamalarni saqlash</button>
+            </form>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <footer id="site-footer"></footer>
+
+    <script type="module" src="../js/app.js"></script>
+  </body>
+</html>

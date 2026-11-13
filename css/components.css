@@ -1,0 +1,516 @@
+/* ==========================================================================
+   KaylFood — Components, Liquid Glass Buttons, Cards, Cart Drawer & Modals
+   ========================================================================== */
+
+/* Semantic Liquid Glass Buttons (Requirement 2) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  min-height: 42px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 0.885rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 150ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Primary Action: Dark Blue Glass */
+.btn-glass-primary {
+  background: linear-gradient(135deg, rgba(15, 37, 71, 0.95), rgba(29, 78, 216, 0.92));
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 8px 20px -4px rgba(15, 37, 71, 0.28),
+              inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.btn-glass-primary:hover {
+  background: linear-gradient(135deg, rgba(15, 37, 71, 1), rgba(37, 99, 235, 0.98));
+  box-shadow: 0 12px 24px -4px rgba(15, 37, 71, 0.36),
+              inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Light Action: White Glass */
+.btn-glass-white {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--text-primary);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05),
+              inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.btn-glass-white:hover {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(15, 23, 42, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Successful Operation: Green Glass */
+.btn-glass-success {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.94), rgba(4, 120, 87, 0.94));
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  box-shadow: 0 8px 18px -4px rgba(5, 150, 105, 0.28),
+              inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-glass-success:hover {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 1), rgba(4, 120, 87, 1));
+  transform: translateY(-1px);
+}
+
+/* Destructive Action: Red Glass */
+.btn-glass-danger {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.93), rgba(185, 28, 28, 0.93));
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 8px 18px -4px rgba(220, 38, 38, 0.26),
+              inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-glass-danger:hover {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 1), rgba(185, 28, 28, 1));
+  transform: translateY(-1px);
+}
+
+.btn-sm {
+  padding: 7px 13px;
+  min-height: 34px;
+  font-size: 0.8125rem;
+}
+
+.btn-lg {
+  padding: 13px 24px;
+  min-height: 48px;
+  font-size: 0.95rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Interactive Category Filter Bar (Functional Segmented Buttons) */
+.category-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  scrollbar-width: none;
+}
+
+.category-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.category-btn {
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-btn:hover {
+  color: var(--primary-navy);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.category-btn.active {
+  background: var(--primary-navy);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 37, 71, 0.2);
+}
+
+/* Restaurant Catalog Grid & Cards */
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.restaurant-card {
+  background: var(--surface-glass-strong);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glass);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.restaurant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.restaurant-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.restaurant-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.restaurant-card-title-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.restaurant-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Unboxed Metadata Discipline (Section 1.A) */
+.meta-inline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.meta-inline .meta-sep {
+  color: #94a3b8;
+}
+
+.meta-inline .status-open {
+  color: var(--success-green-dark);
+  font-weight: 600;
+}
+
+.meta-inline .status-closed {
+  color: var(--danger-red);
+  font-weight: 600;
+}
+
+.restaurant-card-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Food Product Grid & Cards */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.product-card {
+  background: var(--surface-glass-strong);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-glass);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.product-category-kicker {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.product-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.product-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.product-price {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+}
+
+/* Forms & Inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text-primary);
+  font-size: 0.925rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.14);
+}
+
+.form-error {
+  font-size: 0.8rem;
+  color: var(--danger-red);
+  min-height: 18px;
+}
+
+.password-field-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 10px;
+  padding: 4px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  border-radius: 6px;
+}
+
+/* Slide-over Shopping Cart & Notification Drawer */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.36);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slide-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 430px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: var(--glass-blur);
+  border-left: 1px solid var(--border-hairline);
+  box-shadow: -16px 0 40px rgba(15, 23, 42, 0.14);
+  z-index: 210;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.drawer-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.drawer-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--border-hairline);
+  background: rgba(248, 250, 252, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Quantity Stepper */
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-muted);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: #ffffff;
+  color: var(--primary-navy);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+/* Modal Dialog */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.44);
+  backdrop-filter: blur(6px);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
+  padding: 28px;
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 380px;
+}
+
+.toast-item {
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  padding: 13px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toast-item.toast-success {
+  background: rgba(4, 120, 87, 0.96);
+}
+
+.toast-item.toast-error {
+  background: rgba(185, 28, 28, 0.96);
+}
